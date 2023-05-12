@@ -4,7 +4,8 @@ import { useFormik } from 'formik';
 import React from 'react'
 import { BasicFormValidation } from './validation';
 import { v4 as uuidv4 } from 'uuid';
-
+import "./form.css"
+import { Link } from 'react-router-dom';
 const BasicForm = () => {
 
     const handleSubmit=(values,actions)=>{
@@ -35,6 +36,7 @@ const BasicForm = () => {
 
         <div style={{display:'flex',gap:'10px',width:'100%'}}>
         <TextField style={{width:'100%'}}
+        className={(formik.errors.name && formik.touched.name) ? "input-error" : ""} onBlur={formik.handleBlur} 
         id="outlined-basic" 
         placeholder='First Name' 
         variant="outlined"
@@ -43,9 +45,10 @@ const BasicForm = () => {
         value={formik.values.name}
         name='name' >
         </TextField>
-        <span style={{color:"red"}}>{formik.errors.name}</span>
-
+        {(formik.errors.name && formik.touched.name) && <p style={{ color: 'red' }}>{formik.errors.name}</p>}
+     
         <TextField 
+        className={(formik.errors.surname && formik.touched.surname) ? "input-error" : ""} onBlur={formik.handleBlur} 
         style={{width:'100%'}}
         id="outlined-basic" 
         placeholder='Last Name' 
@@ -55,13 +58,14 @@ const BasicForm = () => {
         value={formik.values.surname}
         name='surname' >
         </TextField>
-        <span style={{color:"red"}}>{formik.errors.surname}</span>
+        {(formik.errors.surname && formik.touched.surname) && <p style={{ color: 'red' }}>{formik.errors.surname}</p>}
 
         </div>
 
         <div style={{width:'100%'}}>
         
         <TextField style={{width:'100%',marginTop:'10px'}} id="outlined-basic" 
+        className={(formik.errors.phone && formik.touched.phone) ? "input-error" : ""} onBlur={formik.handleBlur} 
         placeholder='Mobile Number' 
         variant="outlined"
         type='string'
@@ -69,10 +73,11 @@ const BasicForm = () => {
         value={formik.values.phone}
         name='phone'
         ></TextField>
-         <span style={{color:"red"}}>{formik.errors.phone}</span>
+          {(formik.errors.phone && formik.touched.phone) && <p style={{ color: 'red' }}>{formik.errors.phone}</p>}
 
 
         <TextField style={{width:'100%',marginTop:'10px'}} id="outlined-basic" 
+        className={(formik.errors.password && formik.touched.password) ? "input-error" : ""} onBlur={formik.handleBlur} 
         placeholder='New Password' 
         variant="outlined"
         type='password'
@@ -81,7 +86,7 @@ const BasicForm = () => {
         name='password'
         ></TextField>
         </div>
-         <span style={{color:"red"}}>{formik.errors.password}</span>
+        {(formik.errors.password && formik.touched.password) && <p style={{ color: 'red' }}>{formik.errors.password}</p>}
 
         <br/>
         <Typography style={{fontSize:'10px',width:'100%'}}>
@@ -90,7 +95,8 @@ const BasicForm = () => {
              notifications from us and can opt out at any time.</Typography>
         
         <div style={{width:'40%', margin:'15px auto'}}>
-        <Button style={{width:'100%'}}  variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0} type='submit'>Sign UP</Button>
+        <Button style={{width:'100%'}}  variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0} type='submit'>
+        <Link style={{color:'white', textDecoration:'none'}} to='/navbar'>Sign UP</Link></Button>
         </div>
     </form>
     </Container>
