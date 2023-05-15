@@ -7,11 +7,12 @@ import { v4 as uuidv4 } from 'uuid';
 import "./form.css"
 import { Link } from 'react-router-dom';
 const BasicForm = () => {
-
+ 
     const handleSubmit=(values,actions)=>{
-        values.id = uuidv4()
+      values.id = uuidv4()
       console.log(values)
       console.log(actions);
+      actions.resetForm()
     }
     const formik = useFormik({
         initialValues: {
@@ -95,8 +96,9 @@ const BasicForm = () => {
              notifications from us and can opt out at any time.</Typography>
         
         <div style={{width:'40%', margin:'15px auto'}}>
-        <Button style={{width:'100%'}}  variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0} type='submit'>
+        <Button  style={{width:'100%'}}  variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0} type='submit'>
         <Link style={{color:'white', textDecoration:'none'}} to='/navbar'>Sign UP</Link></Button>
+        
         </div>
     </form>
     </Container>

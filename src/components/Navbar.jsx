@@ -12,11 +12,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import React from 'react'
+import { useUserContext } from '../context/UserContext';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
+  const {user} = useUserContext()
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
   
@@ -36,6 +38,7 @@ const Navbar = () => {
     };
   
   return (
+    <>
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -157,6 +160,9 @@ const Navbar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+
+    <h2>{`Welcome ${user?.username}`}</h2>
+    </>
   )
 }
 
